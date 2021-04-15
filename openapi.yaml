@@ -1,0 +1,159 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: MockAuth
+  description: ''
+  contact: {}
+servers:
+  - url: http://example.com/api/v1
+paths:
+  /api/v1/authenticate:
+    post:
+      description: ''
+      operationId: Authenticate
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/login'
+
+    get:
+      description: ''
+      operationId: Authenticate
+      responses:
+        '403':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/test'  
+
+  /api/v1/authenticateCustomer:
+    post:
+      description: ''
+      operationId: Authenticate
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/loginCustomer'
+
+    get:
+      description: ''
+      operationId: Authenticate
+      responses:
+        '403':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/test'  
+
+
+  /api/v1/refresh:
+    get:
+      description: ''
+      operationId: Refreshtoken
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/refresh'  
+
+
+  /api/v1/test1:
+    get:
+      description: ''
+      operationId: gettest1
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/test'  
+
+    post:
+      description: ''
+      operationId: posttest1
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/test'  
+
+  /api/v1/test2:
+    get:
+      description: ''
+      summary: Get Test2
+      operationId: gettest2
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/test'  
+
+    post:
+      description: ''
+      summary: Post Test2
+      operationId: posttest2
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/test'  
+
+
+components: 
+  schemas: 
+    login: 
+      type: object
+      properties:
+        merchantId: 
+          type: integer
+          minimum: 410000
+          maximum: 510000
+          example: 444444
+        token: 
+          type: string
+          pattern: '^[a-z0-9]{30}==$'
+          example: mergiohfkhwedfigewuyfgihgohigweiufgi8364hjh
+    loginCustomer: 
+      type: object
+      properties:
+        customerId: 
+          type: integer
+          minimum: 410000
+          maximum: 510000
+          example: 444444
+        token: 
+          type: string
+          pattern: '^[a-z0-9]{30}==$'
+          example: cusrgiohfkhwedfigewuyfgihgohigweiufgi8364hjh
+
+    refresh: 
+      type: object
+      properties: 
+        token: 
+          type: string
+          pattern: '^[a-z0-9]{30}==$'
+          example: reffkejfjehrheeigewuyfgihgohigweiufgi8364hjh
+    test:
+      type: object
+      properties:
+        msg:
+          type: string
+          x-faker: lorem.text
+tags: []
